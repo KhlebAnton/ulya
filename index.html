@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibrating Water Drop Avatar with Emotion Effects</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="background">
+
+  </div>
+  <div id="scene"></div>
+  <div id="loading">Loading Vibrating Water Drop Avatar...</div>
+  <div id="textBubble"></div>
+  <div id="ui">
+    <button class="btn" onclick="playAnimation('happy')">Happy</button>
+    <button class="btn" onclick="playAnimation('sad')">Sad</button>
+    <button class="btn" onclick="playAnimation('excited')">Excited</button>
+    <button class="btn" onclick="showTextBubble('Hello, I am a water drop!')">Show Text Bubble</button>
+  </div>
+
+
+  <div class="screen screen-play">
+    <div class="play-wrapper">
+      <p>Будешь играть?</p>
+      <button class="btn" onclick="playGame()">Play</button>
+    </div>
+
+  </div>
+<script src="./script.js"></script>
+</body>
+
+</html>
