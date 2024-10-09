@@ -306,3 +306,5 @@ function playGame() {
         }, 4200)
     }, 4200)
 }
+
+window.Telegram.WebApp.disableVerticalSwipes();
