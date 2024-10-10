@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Vibrating Water Drop Avatar with Emotion Effects</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
@@ -11,12 +11,18 @@
 </head>
 
 <body>
+  <div class="light">
+    <button class="btn btn-light hidden" onclick="setLight()" ontouchstart>light</button>
+  </div>
+  <button class="btn btn-play hidden" onclick="playQuize()" ontouchstart>Quize</button>
   <div class="background">
-
+    <video src="./bg.mp4" muted loop autoplay playsinline></video>
   </div>
   <div id="scene"></div>
   <div id="loading">Loading Vibrating Water Drop Avatar...</div>
-  <div id="textBubble"></div>
+  <div class="text-bubble-wrapper">
+
+  </div>
   <div id="ui">
     <button class="btn" onclick="playAnimation('happy')">Happy</button>
     <button class="btn" onclick="playAnimation('sad')">Sad</button>
@@ -24,11 +30,23 @@
     <button class="btn" onclick="showTextBubble('Hello, I am a water drop!')">Show Text Bubble</button>
   </div>
 
-
+  <div class="screen screen-game">
+    
+    <div class="game-wrapper hidden">
+      <div class="question">
+        <span class="quest-text">Говорил ли он сегодня, что любит тебя?</span>
+        <button class="btn btn-answer">ДА</button>
+        <button class="btn btn-answer">НЕТ</button>
+      </div>
+      <div class="btn-answers">
+        
+      </div>
+    </div>
+  </div>
   <div class="screen screen-play">
     <div class="play-wrapper">
       <p>Будешь играть?</p>
-      <button class="btn" onclick="playGame()">Play</button>
+      <button class="btn" onclick="playGame()" ontouchstart>Play</button>
     </div>
 
   </div>

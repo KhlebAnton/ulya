@@ -98,7 +98,7 @@ class SimplexNoise {
   }
 }
 
-let scene, camera, renderer, waterDrop;
+let scene, camera, renderer, waterDrop,directionalLight;
 const originalColor = new THREE.Color(0x6495ED); // Cornflower blue
 const textBubble = document.getElementById('textBubble');
 const videoBackground = document.getElementById('videoBackground');
@@ -117,8 +117,8 @@ function init() {
   // Add lighting
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(ambientLight);
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-  directionalLight.position.set(0, 10, 5);
+  directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  directionalLight.position.set(10, 15, 10);
   scene.add(directionalLight);
 
   camera.position.z = 3;
@@ -135,7 +135,7 @@ function createWaterDropAvatar() {
   const material = new THREE.MeshPhysicalMaterial({
     color: originalColor,
     transparent: true,
-    opacity: 0.9, // Increased opacity
+    opacity: 1, // Increased opacity
     metalness: 0.1,
     roughness: 0.1,
     transmission: 0.5, // Reduced transmission
@@ -252,16 +252,20 @@ function resetEffects() {
   noiseScale = 0.1;
   noiseSpeed = 0.002;
 }
+const textBubbleWrapper = document.querySelector('.text-bubble-wrapper');
 
-function showTextBubble(text) {
-  textBubble.textContent = text;
-  textBubble.style.opacity = '1';
-  textBubble.style.top = '20%';
-  textBubble.style.left = '50%';
-  textBubble.style.transform = 'translate(-50%, -50%)';
-  setTimeout(() => {
-    textBubble.style.opacity = '0';
-  }, 4000);
+let randomDegs = ['-7deg','-5deg','-2deg','7deg','5deg','2deg']
+function showTextBubble(text, time) {
+  let bubbleDiv = document.createElement('div');
+  bubbleDiv.classList.add('text-bubble');
+  bubbleDiv.style.transform = `rotate(${randomDegs[Math.floor(Math.random() * ((randomDegs.length - 1) + 1))]})`
+  bubbleDiv.textContent = text;
+  textBubbleWrapper.appendChild(bubbleDiv);
+
+  setTimeout(()=> {
+    bubbleDiv.classList.add('hidden');
+    setTimeout(()=> {bubbleDiv.remove()},1000)
+  },time - 100)
 }
 
 // API function to show text bubble
@@ -280,7 +284,7 @@ function handleResize() {
 }
 
 const simplex = new SimplexNoise();
-
+let lightON = false;
 init();
 
 // Expose the API function globally
@@ -293,18 +297,84 @@ function hideScreenPlay() {
 }
 function playGame() {
     hideScreenPlay();
-    showTextBubble('ХЭЙ! Привет! Я ТРЕВОЖНОСТЬ');
+    setTimeout(()=> { 
+      showTextBubble('ХЭЙ!',2000);
+      setTimeout(()=>{
+        showTextBubble('Вы кто такие, я вас не звал, идите...',2000);
+        setTimeout(()=>{
+          showTextBubble('Ааа, это ты',2000);
+          setTimeout(()=>{
+            showTextBubble('Включи-ка свет',3000);
+            btnLight.classList.remove('hidden')
+            setTimeout(()=>{
+              if(!lightON) {
+                showTextBubble('Вон на верху кнопка, давай-давай',3000);
+              }
+              
+              
+            }, 5000)
+          }, 2000)
+        }, 2000)
+      }, 2000)
+    },1500)
+   
     
-    setTimeout(()=> {
-        showTextBubble('Мне кажется, твой муж разлюбил тебя')
-        playAnimation('excited');
-        setTimeout(()=> {
-            showTextBubble('Мы кончно не будем спрашивать его, пф')
-            setTimeout(()=> {
-                showTextBubble('Я тут тест нашла, поехали? Любит или не любит тебя он..');
-            }, 4200)
-        }, 4200)
-    }, 4200)
+    
 }
-
+function playScene2() {
+  
+  showTextBubble('Оо, так лучше, даа',3000);
+  playAnimation('happy')
+  setTimeout(() => {
+    showTextBubble('Так-с, меня не представили',3000);
+    setTimeout(() => {
+      showTextBubble('Я твоя ТРЕВОЖНОСТЬ',3000);
+      setTimeout(()=>playAnimation('excited'),500);
+      setTimeout(() => {
+        showTextBubble('И я тут узнала, что тебе кажется...',3000);
+        setTimeout(() => {
+          showTextBubble('Что твой муж НЕ ЛЮБИТ тебя...',3000);
+          setTimeout(()=>playAnimation('sad'),1500);
+          setTimeout(() => {
+            showTextBubble('Но! Зая, я знаю, как помочь тебе и узнать точно..',5000);
+            setTimeout(() => {
+              showTextBubble('Мы, конечно, не будем его ПРОСТО спрашивать,пффф',5000);
+              setTimeout(()=>playAnimation('excited'),2000);
+              setTimeout(() => {
+                showTextBubble('Я тут тестик один нашла, давай попробуем',5000);
+                setTimeout(()=>playAnimation('happy'),1000);
+                btnQuize.classList.remove('hidden')
+              }, 5000);
+            }, 5000);
+          }, 4000);
+        }, 3000);
+      }, 3000);
+    }, 3000);
+  }, 4000);
+}
 window.Telegram.WebApp.disableVerticalSwipes();
+const btnQuize = document.querySelector('.btn-play');
+
+const light = document.querySelector('.light')
+const btnLight = document.querySelector('.btn-light')
+function setLight() {
+  lightON = true;
+  light.classList.add('fade');
+  btnLight.classList.add('hidden');
+  document.querySelectorAll('.text-bubble').forEach((bub)=>{
+    bub.classList.add('hidden');
+  });
+  setTimeout(playScene2,1000);
+}
+const screenGame = document.querySelector('.game-wrapper');
+function playQuize() {
+  document.querySelectorAll('.text-bubble').forEach((bub)=>{
+    bub.classList.add('hidden');
+  });
+  screenGame.classList.remove('hidden');
+  btnQuize.classList.add('hidden');
+  showTextBubble('Так, первый вопрос..',3000);
+  setTimeout(()=> {
+    showTextBubble('Он сегодня говорил, что тебя любит?',3000);
+  }, 3000)
+}
