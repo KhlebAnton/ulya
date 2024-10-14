@@ -304,7 +304,7 @@ function playGame() {
       showTextBubble('ХЭЙ!',2000);
       playSound('hey');
       setTimeout(()=>{
-        playSound('vi kto');
+        playSound('vi_kto');
         showTextBubble('Вы кто такие, я вас не звал, идите...',2000);
         setTimeout(()=>{
           showTextBubble('Ааа, это ты',2000);
@@ -314,7 +314,7 @@ function playGame() {
             btnLight.classList.remove('hidden')
             setTimeout(()=>{
               if(!lightON) {
-                playSound('von knopka');
+                playSound('von_knopka');
                 showTextBubble('Вон на верху кнопка, давай-давай',3000);
               }
               
@@ -351,7 +351,7 @@ function playScene2() {
             playSound('zaya');
             showTextBubble('Но! Зая, я знаю, как помочь тебе и узнать точно..',5000);
             setTimeout(() => {
-              playSound('ne budem');
+              playSound('ne_budem');
               showTextBubble('Мы, конечно, не будем его ПРОСТО спрашивать,пффф',5000);
               setTimeout(()=>playAnimation('excited'),2000);
               setTimeout(() => {
@@ -389,7 +389,7 @@ function playQuize() {
   screenGame.classList.remove('hidden');
   btnQuize.classList.add('hidden');
   showTextBubble('Так, первый вопрос..',3000);
-  playSound('tak perv');
+  playSound('tak_perv');
   setTimeout(()=> {
     playSound('vopros');
     showTextBubble('Он сегодня говорил, что тебя любит?',3000);
@@ -397,7 +397,7 @@ function playQuize() {
 }
 
 function playSound(title) {
-  audioObj = new Audio(`./sounds/${title}.mp3`);
+  audioObj = new Audio(`./sounds/${title}.MP3`);
   audioObj.play();
 }
 
