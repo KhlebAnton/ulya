@@ -342,6 +342,7 @@ body {
     margin-left: 80px;
     color: #00000065;
 }
+
 .loader-line {
     overflow: hidden;
     display: -webkit-box;
@@ -362,9 +363,9 @@ body {
 z-index: 20;
 -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
--webkit-transition: .2s;
--o-transition: .2s;
-transition: .2s;
+-webkit-transition: 1s;
+-o-transition: 1s;
+transition: 1s;
 display: -webkit-box;
 display: -ms-flexbox;
 display: flex;
@@ -598,4 +599,13 @@ video {
         -ms-flex-direction: column;
             flex-direction: column;
     gap: 20px;
+}
+.end-wrapper {
+    
+    font-size: 21px;
+    border: 2px solid #ffffff;
+}
+.end-screen {
+    padding: 50px 20px ;
+    background: url('./1.webp') 50% / cover no-repeat;
 }

@@ -375,11 +375,12 @@ function playQuize() {
   document.querySelectorAll('.text-bubble').forEach((bub)=>{
     bub.classList.add('hidden');
   });
-  screenGame.classList.remove('hidden');
+  
   btnQuize.classList.add('hidden');
   showTextBubble('Так, первый вопрос..',3000);
   setTimeout(()=> {
     showTextBubble('Он сегодня говорил, что тебя любит?',3000);
+    screenGame.classList.remove('hidden');
   }, 3000)
 }
 
@@ -399,7 +400,6 @@ document.addEventListener("DOMContentLoaded", () => {
       countProgress += 5;
     } else {
       setProgress(100);
-      document.querySelector('.loader-text').textContent = 'ГОТОООВ!'
       clearInterval(progressLoader);
       setTimeout(() => {
         loaderBar.classList.add('hidden');
@@ -409,4 +409,42 @@ document.addEventListener("DOMContentLoaded", () => {
     
   },300) 
 });
+
+function onClickYES() {
+  document.querySelectorAll('.text-bubble').forEach((bub)=>{
+    bub.classList.add('hidden');
+  });
+  screenGame.classList.add('hidden');
+  showTextBubble('ДА ДА ДА ДА!',3000);
+  
+  playAnimation('happy')
+  setTimeout(()=> {
+    showTextBubble('Всё! Тест окончен, он тебя точно любит!',3000);
+    endScreen.classList.remove('hidden')
+  }, 3000)
+}
+let firstClickNO = false;
+function onClickNO() {
+  document.querySelectorAll('.text-bubble').forEach((bub)=>{
+    bub.classList.add('hidden');
+    
+  });
+  if(!firstClickNO) {
+    firstClickNO = true;
+    showTextBubble('Ты точно УВЕРЕНА в этом ответе?',3000);
+    playAnimation('excited')
+  } else {
+    screenGame.classList.add('hidden');
+  showTextBubble('Скорее всего, сейчас только день начался. Он обязательно скажет!',5000);
+  setTimeout(()=> {
+    showTextBubble('Всё! Тест окончен, он тебя точно любит!',3000);
+    playAnimation('happy');
+    endScreen.classList.remove('hidden')
+  }, 5000)
+  }
+  
+}
+
+const endScreen = document.querySelector('.end-screen');
+
 

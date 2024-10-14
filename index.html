@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -7,22 +8,26 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link rel="stylesheet" href="./style.css?ver=3">
+  <link rel="stylesheet" href="./style.css?ver=4">
 </head>
 
 <body>
   <div class="screen screen-loader">
     <div class="loader-bar">
       <div class="loader-line" style="width: 20%;">
-        <div class="loader-text">Воть, воть, почти..</div>
+        <div class="loader-text">....Секунда....ЩАС...</div>
       </div>
     </div>
   </div>
   <audio src="./sounds/music.mp3" loop></audio>
   <div class="light">
-    <button class="btn btn-light hidden" onclick="setLight()" ontouchstart>light</button>
+    <button class="btn btn-light hidden" onclick="setLight()" ontouchstart>
+      <svg width="34px" height="34px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.53846C8.97834 3.53846 6.4931 5.96125 6.55645 8.90671C6.57371 9.7088 6.87531 10.6295 7.26658 11.4799C7.65191 12.3175 8.09318 13.0214 8.32703 13.3731C8.47203 13.5911 8.59914 13.8339 8.68953 14.1022L9.45 16.359H14.55L15.3105 14.1022C15.4009 13.8339 15.528 13.5911 15.673 13.3731C15.9068 13.0214 16.3481 12.3176 16.7334 11.4799C17.1247 10.6295 17.4263 9.7088 17.4435 8.90672C17.5069 5.96125 15.0217 3.53846 12 3.53846ZM14.3329 17.8974H9.66715V18.1538C9.66715 19.4284 10.7116 20.4615 12 20.4615C13.2884 20.4615 14.3329 19.4283 14.3329 18.1537V17.8974ZM8.1119 17.253L7.21409 14.5887C7.17307 14.4669 7.11104 14.3439 7.02767 14.2185C6.7687 13.8291 6.28136 13.0526 5.85102 12.1172C5.4266 11.1946 5.02543 10.0495 5.00156 8.93944C4.91874 5.08909 8.15014 2 12 2C15.8499 2 19.0813 5.0891 18.9984 8.93944C18.9746 10.0495 18.5734 11.1946 18.149 12.1172C17.7187 13.0526 17.2313 13.8291 16.9724 14.2185C16.889 14.3439 16.827 14.4669 16.786 14.5887L15.8881 17.253V18.1537C15.8881 20.2778 14.1474 22 12 22C9.85267 22 8.1119 20.278 8.1119 18.1538V17.253Z" fill="#ffffff"/>
+        </svg>
+    </button>
   </div>
-  <button class="btn btn-play hidden" onclick="playQuize()" ontouchstart>Quize</button>
+  <button class="btn btn-play hidden" onclick="playQuize()" ontouchstart>Давай проверять!</button>
   <div class="background">
     <video src="./bg.mp4" muted loop autoplay playsinline></video>
   </div>
@@ -39,26 +44,33 @@
   </div>
 
   <div class="screen screen-game">
-    
+
     <div class="game-wrapper hidden">
       <div class="question">
         <span class="quest-text">Говорил ли он сегодня, что любит тебя?</span>
-        <button class="btn btn-answer" ontouchstart>ДА</button>
-        <button class="btn btn-answer" ontouchstart>НЕТ</button>
+        <button class="btn btn-answer" ontouchstart onclick="onClickYES()">ДА</button>
+        <button class="btn btn-answer" ontouchstart onclick="onClickNO()">НЕТ</button>
       </div>
       <div class="btn-answers">
-        
+
       </div>
     </div>
   </div>
   <div class="screen screen-play">
     <div class="play-wrapper">
       <p>Где ты оказалась? Да! Прямо тут? А как ты тут оказалась? Хм..</p>
-      <button class="btn" onclick="playGame()" ontouchstart>Интересно, да</button>
+      <button class="btn" onclick="playGame()" ontouchstart>Что это?</button>
     </div>
 
   </div>
-<script src="./script.js?ver=4"></script>
+
+  <div class="screen end-screen hidden">
+    <div class="play-wrapper end-wrapper">
+      <p>Антон тебя очень любит <br>
+        И никогда не перестанет!</p>
+    </div>
+  </div>
+  <script src="./script.js?ver=5"></script>
 </body>
 
 </html>
