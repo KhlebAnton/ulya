@@ -302,19 +302,15 @@ function playGame() {
     hideScreenPlay();
     setTimeout(()=> { 
       showTextBubble('ХЭЙ!',2000);
-      playSound('hey');
       setTimeout(()=>{
-        playSound('vi_kto');
         showTextBubble('Вы кто такие, я вас не звал, идите...',2000);
         setTimeout(()=>{
           showTextBubble('Ааа, это ты',2000);
           setTimeout(()=>{
-            playSound('svet');
             showTextBubble('Включи-ка свет',3000);
             btnLight.classList.remove('hidden')
             setTimeout(()=>{
               if(!lightON) {
-                playSound('von_knopka');
                 showTextBubble('Вон на верху кнопка, давай-давай',3000);
               }
               
@@ -331,31 +327,24 @@ function playGame() {
 function playScene2() {
   
   showTextBubble('Оо, так лучше, даа',3000);
-  playSound('luchshe');
   playAnimation('happy')
   setTimeout(() => {
-    playSound('taks');
     showTextBubble('Так-с, меня не представили',3000);
     setTimeout(() => {
-      playSound('trevozh_tru');
       showTextBubble('Я твоя ТРЕВОЖНОСТЬ',3000);
       setTimeout(()=>playAnimation('excited'),500);
       setTimeout(() => {
-        playSound('uznala');
         showTextBubble('И я тут узнала, что тебе кажется...',3000);
         setTimeout(() => {
           
           showTextBubble('Что твой муж НЕ ЛЮБИТ тебя...',3000);
           setTimeout(()=>playAnimation('sad'),1500);
           setTimeout(() => {
-            playSound('zaya');
             showTextBubble('Но! Зая, я знаю, как помочь тебе и узнать точно..',5000);
             setTimeout(() => {
-              playSound('ne_budem');
               showTextBubble('Мы, конечно, не будем его ПРОСТО спрашивать,пффф',5000);
               setTimeout(()=>playAnimation('excited'),2000);
               setTimeout(() => {
-                playSound('testik');
                 showTextBubble('Я тут тестик один нашла, давай попробуем',5000);
                 setTimeout(()=>playAnimation('happy'),1000);
                 btnQuize.classList.remove('hidden')
@@ -389,17 +378,11 @@ function playQuize() {
   screenGame.classList.remove('hidden');
   btnQuize.classList.add('hidden');
   showTextBubble('Так, первый вопрос..',3000);
-  playSound('tak_perv');
   setTimeout(()=> {
-    playSound('vopros');
     showTextBubble('Он сегодня говорил, что тебя любит?',3000);
   }, 3000)
 }
 
-function playSound(title) {
-  audioObj = new Audio(`./sounds/${title}.MP3`);
-  audioObj.play();
-}
 
 const loaderLine = document.querySelector('.loader-line')
 function setProgress(progress) {
